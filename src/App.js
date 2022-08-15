@@ -4,7 +4,7 @@ import { Footer } from "./components/common/Footer";
 import { Todos } from "./components/application/Todos";
 import { AddTodo } from "./components/application/AddTodo";
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 function App() {
   const [todos, setTodo] = useState([]);
@@ -21,14 +21,11 @@ function App() {
     ])
   }
 
-  useEffect(() => {
-    console.log(JSON.stringify(todos))
-  }, [todos])
-
   function deleteTodo(todo) {
-    console.log(todo.id)
-    const indexOfTodo = todos.indexOf(todo);
-    todos.splice(indexOfTodo, 1);
+    console.log(`Deleting todo with ID: ${todo.id}`)
+    setTodo(todos.filter((e) => {
+      return e !== todo;
+    }))
   }
   // const todos = [
   //   {

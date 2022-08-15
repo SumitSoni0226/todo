@@ -5,7 +5,9 @@ export function AddTodo({ submitTodo }) {
     const [desc, setDesc] = useState("");
     function submit(e) {
         e.preventDefault();
-        submitTodo(title, desc)
+        submitTodo(title, desc);
+        setTitle("");
+        setDesc("");
     }
     return (
         <>
