@@ -4,10 +4,15 @@ import { Footer } from "./components/common/Footer";
 import { Todos } from "./components/application/Todos";
 import { AddTodo } from "./components/application/AddTodo";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
-  const [todos, setTodo] = useState([]);
+  const [todos, setTodo] = useState(JSON.parse(localStorage.getItem("todos")));
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos])
+
   function submitTodo(title, desc) {
     console.log(title, desc)
     const id = todos[todos.length - 1]?.id + 1 || 1
@@ -25,7 +30,7 @@ function App() {
     console.log(`Deleting todo with ID: ${todo.id}`)
     setTodo(todos.filter((e) => {
       return e !== todo;
-    }))
+    }));
   }
   // const todos = [
   //   {
